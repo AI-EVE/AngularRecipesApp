@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="ingredientForm">
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="name">Name</label>
+          <input
+            formControlName="name"
+            type="text"
+            id="name"
+            class="form-control"
+          />
+        </div>
+        <div class="col-sm-2 form-group">
+          <label for="amount">Amount</label>
+          <input
+            formControlName="amount"
+            type="number"
+            id="amount"
+            class="form-control"
+          />
+          <span *ngIf="ingredientForm.get('amount').value == 0"
+            >must be more than 0</span
+          >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            [disabled]="!ingredientForm.valid"
+            class="btn btn-success"
+            type="button"
+            (click)="onAdd()"
+          >
+            {{ mode == "add" ? "Add" : "Update" }}
+          </button>
+          <button
+            *ngIf="mode == 'edit'"
+            class="btn btn-danger"
+            type="button"
+            (click)="onDelete()"
+          >
+            Delete
+          </button>
+          <button class="btn btn-primary" type="button" (click)="onClear()">
+            Clear
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
